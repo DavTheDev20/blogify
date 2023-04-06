@@ -1,9 +1,21 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
+'use client';
 
-const inter = Inter({ subsets: ['latin'] });
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { log } from 'console';
+import Post from './components/Post';
 
 export default function Home() {
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const response = await axios.get('http://localhost:3000/api/posts');
+      const data = await response.data;
+      const posts = data.posts;
+      return posts;
+    },
+  });
+
   return (
     <div>
       <form className="bg-slate-300 w-5/12 m-auto mt-10 h-80 rounded-md">
@@ -13,7 +25,7 @@ export default function Home() {
             name="title"
             className="block my-2 w-4/5 p-1"
             type="text"
-            placeholder="enter a title"
+            placeholder="enter a title..."
             autoComplete="off"
           />
           <label>Say whats on your mind!</label>
@@ -29,7 +41,15 @@ export default function Home() {
           />
         </div>
       </form>
-      <div></div>
+      <div className="w-5/12 m-auto mt-10">
+        {isLoading
+          ? 'Loading...'
+          : isError
+          ? 'Error...'
+          : data.map((post: any) => {
+              return <Post title={post.title} content={post.content} />;
+            })}
+      </div>
     </div>
   );
 }

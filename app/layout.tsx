@@ -1,5 +1,6 @@
 import './globals.css';
 import NavBar from './components/NavBar';
+import Providers from './providers';
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-50">
         <NavBar />
-        {children}
+        <Providers>{children}</Providers>
+        <footer className="text-center mt-40">
+          © Davin Reid {new Date().getFullYear()}
+        </footer>
       </body>
     </html>
   );
