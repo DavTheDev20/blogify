@@ -37,8 +37,9 @@ export default function Home() {
     mutationFn: async (data: object) => {
       return axios.post(API_ROUTE, data);
     },
-    onError: (error) => {
-      console.log(error);
+    onError: (error: any) => {
+      if (error?.response.data.error)
+        return toast.error(error?.response.data.error);
       toast.error('Something went wrong');
     },
     onSuccess: () => {
@@ -76,7 +77,7 @@ export default function Home() {
     <div>
       <Toaster />
       <form
-        className="bg-slate-300 w-5/12 m-auto mt-10 h-80 rounded-md shadow-lg"
+        className="bg-slate-300 w-8/12 m-auto mt-10 h-80 rounded-md shadow-lg"
         onSubmit={submitPost}
       >
         <div className="p-8">
@@ -96,17 +97,17 @@ export default function Home() {
             ref={contentInput}
           />
           <label
-            className="block ml-4"
+            className="block"
             style={
               contentCharCount > maxCharLength
                 ? { color: 'red' }
-                : { color: 'initial' }
+                : { color: '#6b7280' }
             }
           >
             {contentCharCount}/{maxCharLength}
           </label>
           <input
-            className="mt-0 mr-5 bg-blue-500 px-10 py-1 text-white rounded-md cursor-pointer float-right"
+            className="mt-0 mr-5 bg-blue-500 px-10 py-1 text-white rounded-md cursor-pointer float-right active:bg-blue-700 transition-colors"
             type="submit"
             value="Post"
           />
