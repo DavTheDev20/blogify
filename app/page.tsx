@@ -76,7 +76,7 @@ export default function Home() {
     <div>
       <Toaster />
       <form
-        className="bg-slate-300 w-5/12 m-auto mt-10 h-69 rounded-md"
+        className="bg-slate-300 w-5/12 m-auto mt-10 h-80 rounded-md shadow-lg"
         onSubmit={submitPost}
       >
         <div className="p-8">
@@ -106,7 +106,7 @@ export default function Home() {
             {contentCharCount}/{maxCharLength}
           </label>
           <input
-            className="mt-2 bg-blue-500 px-6 py-1 text-white rounded-md cursor-pointer"
+            className="mt-0 mr-5 bg-blue-500 px-10 py-1 text-white rounded-md cursor-pointer float-right"
             type="submit"
             value="Post"
           />

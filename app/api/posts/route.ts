@@ -34,8 +34,6 @@ export async function POST(request: Request) {
       data: {
         title: requestData.title,
         content: requestData.content,
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     });
 
