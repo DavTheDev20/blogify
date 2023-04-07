@@ -6,6 +6,7 @@ import Post from './components/Post';
 import Loading from './components/Loading';
 import { FormEvent, useState, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { PostType } from '@/types/types';
 
 export default function Home() {
   const API_ROUTE = 'http://localhost:3000/api/posts';
@@ -22,7 +23,8 @@ export default function Home() {
   async function getPosts() {
     const response = await axios.get(API_ROUTE);
     const data = await response.data;
-    const posts = data.posts;
+    let posts: Array<PostType> = data.posts;
+    posts.reverse();
     return posts;
   }
 
@@ -116,7 +118,7 @@ export default function Home() {
         ) : isError ? (
           'Error...'
         ) : (
-          data.reverse().map((post: any) => {
+          data.map((post: PostType) => {
             return (
               <Post
                 key={post.id}

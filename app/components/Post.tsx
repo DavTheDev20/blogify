@@ -10,6 +10,7 @@ export default function Post({
   createdAt: Date;
 }) {
   const currentYear = new Date().getFullYear();
+
   return (
     <div className="my-8">
       <h2 className="text-lg font-semibold">{title}</h2>
