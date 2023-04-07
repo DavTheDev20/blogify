@@ -10,7 +10,7 @@ import { PostType } from '@/types/types';
 
 export default function Home() {
   const API_ROUTE = 'http://localhost:3000/api/posts';
-  const maxCharLength = 400;
+  const maxCharLength = 250;
 
   const queryClient = useQueryClient();
 
@@ -83,7 +83,7 @@ export default function Home() {
         <div className="p-8">
           <input
             name="title"
-            className="inline my-2 w-11/12 px-1 py-2 rounded-sm"
+            className="inline my-2 w-11/12 px-1 py-2 rounded-sm text-lg"
             type="text"
             placeholder="What's the title?"
             autoComplete="off"
@@ -91,7 +91,7 @@ export default function Home() {
           />
           <textarea
             name="content"
-            className="block my-3 w-11/12 h-32 px-1 py-2 rounded-sm"
+            className="block my-3 w-11/12 h-28 px-1 py-2 rounded-sm text-lg"
             placeholder="say whats on your mind... 🤔"
             onChange={(event) => setContentCharCount(event.target.value.length)}
             ref={contentInput}
