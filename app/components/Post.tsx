@@ -23,7 +23,11 @@ export default function Post({
 
   return (
     <div className="my-8 bg-slate-200 p-8 rounded-lg">
-      <img src={author.profilePicture} className="w-12 rounded-full inline" />
+      <img
+        src={author.profilePicture}
+        className="w-12 rounded-full inline"
+        loading="lazy"
+      />
       <h2 className="inline ml-4 font-semibold text-slate-500">
         {author.username}
       </h2>
