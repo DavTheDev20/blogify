@@ -16,11 +16,11 @@ export default function Post({
       <small className="font-thin text-gray-400">
         {/* If there is a post that is from a previous year, show year in date */}
         {new Date(createdAt).getFullYear() === currentYear
-          ? new Date(createdAt).toLocaleDateString('en-us', {
+          ? new Date(createdAt).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
             })
-          : new Date(createdAt).toLocaleDateString('en-us', {
+          : new Date(createdAt).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
               year: 'numeric',
