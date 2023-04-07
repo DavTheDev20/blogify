@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { log } from 'console';
 import Post from './components/Post';
+import Loading from './components/Loading';
 
 export default function Home() {
   const { isLoading, isError, data, error } = useQuery({
@@ -18,37 +19,44 @@ export default function Home() {
 
   return (
     <div>
-      <form className="bg-slate-300 w-5/12 m-auto mt-10 h-80 rounded-md">
-        <div className="p-10">
-          <label>What are you telling us?</label>
+      <form className="bg-slate-300 w-5/12 m-auto mt-10 h-69 rounded-md">
+        <div className="p-8">
           <input
             name="title"
-            className="block my-2 w-4/5 p-1"
+            className="block my-2 w-11/12 p-1 rounded-sm"
             type="text"
-            placeholder="enter a title..."
+            placeholder="What's your title?"
             autoComplete="off"
           />
-          <label>Say whats on your mind!</label>
+          {/* <label>Say whats on your mind!</label> */}
           <textarea
             name="content"
-            className="block my-2 w-4/5 h-28 p-1"
-            placeholder="type your thoughts... 🤔"
+            className="block my-3 w-11/12 h-32 p-1 rounded-sm"
+            placeholder="say whats on your mind... 🤔"
           />
           <input
-            className="mt-2 bg-blue-500 px-6 py-1 mb-1 text-white rounded-md cursor-pointer"
+            className="mt-2 bg-blue-500 px-6 py-1 text-white rounded-md cursor-pointer"
             type="submit"
             value="Post"
           />
         </div>
       </form>
       <div className="w-5/12 m-auto mt-10">
-        {isLoading
-          ? 'Loading...'
-          : isError
-          ? 'Error...'
-          : data.map((post: any) => {
-              return <Post title={post.title} content={post.content} />;
-            })}
+        {isLoading ? (
+          <Loading />
+        ) : isError ? (
+          'Error...'
+        ) : (
+          data.map((post: any) => {
+            return (
+              <Post
+                title={post.title}
+                content={post.content}
+                createdAt={post.createdAt}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
