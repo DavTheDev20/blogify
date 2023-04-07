@@ -116,7 +116,7 @@ export default function Home() {
         ) : isError ? (
           'Error...'
         ) : (
-          data.map((post: any) => {
+          data.reverse().map((post: any) => {
             return (
               <Post
                 key={post.id}
