@@ -1,35 +1,43 @@
-import { randomUUID } from 'crypto';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Post({
   title,
   content,
   createdAt,
+  name,
+  image,
 }: {
   title: string;
   content: string;
   createdAt: Date;
+  name: string;
+  image: string;
 }) {
   const currentYear = new Date().getFullYear();
 
   const author = {
-    username: 'michaelthomas89',
-    profilePicture:
-      'https://this-person-does-not-exist.com/img/avatar-gen11458b284947739865cd857e828f1f21.jpg',
+    username: { name },
+    profilePicture: { image },
   };
 
   const comments = [{}, {}];
 
   return (
     <div className="my-8 bg-slate-200 p-8 rounded-lg">
-      <img
-        src={author.profilePicture}
+      <Image
+        src={author?.profilePicture.image}
+        alt="Profile Image"
+        width={40}
+        height={40}
+        className="inline"
+      />
+      {/* <img
+        src={}
         className="w-12 rounded-full inline"
         loading="lazy"
-      />
+      /> */}
       <h2 className="inline ml-4 font-semibold text-slate-500">
-        {author.username}
+        {author.username.name}
       </h2>
       <hr className="my-2 border-b-1 border-slate-300 w-2/6 opacity-50 " />
       <h3 className="text-md font-semibold mt-1">{title}</h3>

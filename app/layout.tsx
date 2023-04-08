@@ -1,9 +1,6 @@
-'use client';
-
 import './globals.css';
 import NavBar from './components/NavBar';
 import Providers from './providers';
-import { SessionProvider } from 'next-auth/react';
 
 export const metadata = {
   title: 'Blogify',
@@ -18,10 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-50">
-        <SessionProvider>
+        <Providers>
           <NavBar />
-          <Providers>{children}</Providers>
-        </SessionProvider>
+          {children}
+        </Providers>
         <footer className="text-center mt-40 mb-5">
           © Davin Reid {new Date().getFullYear()}
         </footer>

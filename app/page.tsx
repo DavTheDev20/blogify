@@ -7,12 +7,14 @@ import Loading from './components/Loading';
 import { FormEvent, useState, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { PostType } from '@/types/types';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
   const API_ROUTE = 'http://localhost:3000/api/posts';
   const maxCharLength = 250;
 
   const queryClient = useQueryClient();
+  const session = useSession();
 
   const [contentCharCount, setContentCharCount] = useState(0);
   // @ts-ignore
@@ -39,7 +41,7 @@ export default function Home() {
     },
     onError: (error: any) => {
       if (error?.response.data.error)
-        return toast.error(error?.response.data.error);
+        return toast.error(JSON.stringify(error?.response.data.error));
       toast.error('Something went wrong');
     },
     onSuccess: () => {
@@ -53,6 +55,8 @@ export default function Home() {
 
   function submitPost(event: FormEvent) {
     event.preventDefault();
+
+    if (!session.data) return toast.error('Please login to submit post');
 
     const formData = new FormData(event.target as HTMLFormElement);
     const title = formData.get('title') as string;
@@ -126,6 +130,8 @@ export default function Home() {
                 title={post.title}
                 content={post.content}
                 createdAt={post.createdAt}
+                name={post.user.name}
+                image={post.user.image}
               />
             );
           })
