@@ -20,8 +20,6 @@ export default function Post({
     profilePicture: { image },
   };
 
-  const comments = [{}, {}];
-
   return (
     <div className="my-8 bg-slate-200 p-8 rounded-lg">
       <Image
@@ -57,7 +55,7 @@ export default function Post({
       <p className="font-light">{content}</p>
       <div className="mt-3">
         <p className="text-slate-700 font-semibold hover:cursor-pointer">
-          {comments.length} Comments
+          {0} Comments
         </p>
       </div>
     </div>
