@@ -9,6 +9,7 @@ export const authOptions = {
   session: {
     maxAge: 3600,
   },
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
