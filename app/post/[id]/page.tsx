@@ -32,7 +32,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="w-1/2 m-auto">
+    <div className="w-11/12 m-auto md:4/6 lg:w-1/2">
       <Post
         key={data?.id}
         id={data?.id as number}

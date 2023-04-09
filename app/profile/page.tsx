@@ -21,7 +21,7 @@ export default function Profile() {
 
   if (session) {
     return (
-      <div className="w-1/3 m-auto">
+      <div className="w-11/12 m-auto lg:w-5/12">
         <h1 className="text-2xl text-center text-slate-800 mb-5">
           Welcome {session.user?.name}
         </h1>
