@@ -33,6 +33,7 @@ export default function Profile() {
           data?.map((post) => {
             return (
               <Post
+                id={post.id}
                 content={post.content}
                 createdAt={post.createdAt}
                 image={session.user?.image as string}
