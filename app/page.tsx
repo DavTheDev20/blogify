@@ -10,8 +10,9 @@ import { PostType } from '@/types/types';
 import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const { PROD_API_DOMAIN } = process.env;
-  const apiURl = PROD_API_DOMAIN || 'http://localhost:3000/api';
+  const apiURl =
+    'https://blogify-production.up.railway.app/api' ||
+    'http://localhost:3000/api';
   const maxCharLength = 250;
 
   const queryClient = useQueryClient();

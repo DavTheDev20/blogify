@@ -9,8 +9,9 @@ import Loading from '@/app/components/Loading';
 export default function PostPage({ params }: { params: { id: string } }) {
   const { id } = params;
 
-  const { PROD_API_DOMAIN } = process.env;
-  const apiURl = PROD_API_DOMAIN || 'http://localhost:3000/api';
+  const apiURl =
+    'https://blogify-production.up.railway.app/api' ||
+    'http://localhost:3000/api';
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['post'],

@@ -1,16 +1,16 @@
 'use client';
 
-import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import Post from '../components/Post';
 import axios from 'axios';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { PostType } from '@/types/types';
 import Loading from '../components/Loading';
 
 export default function Profile() {
-  const { PROD_API_DOMAIN } = process.env;
-  const apiURl = PROD_API_DOMAIN || 'http://localhost:3000/api';
+  const apiURl =
+    'https://blogify-production.up.railway.app/api' ||
+    'http://localhost:3000/api';
 
   const { data: session, status } = useSession();
   const { data, error, isLoading } = useQuery({
