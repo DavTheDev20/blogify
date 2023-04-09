@@ -10,9 +10,6 @@ import { PostType } from '@/types/types';
 import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const apiURl =
-    'https://blogify-production.up.railway.app/api' ||
-    'http://localhost:3000/api';
   const maxCharLength = 250;
 
   const queryClient = useQueryClient();
@@ -25,7 +22,7 @@ export default function Home() {
   const contentInput: { current: HTMLTextAreaElement } = useRef(null);
 
   async function getPosts() {
-    const response = await axios.get(`${apiURl}/posts`);
+    const response = await axios.get(`/posts`);
     const data = await response.data;
     let posts: Array<PostType> = data.posts;
     posts.reverse();
@@ -39,7 +36,7 @@ export default function Home() {
 
   const addPost = useMutation({
     mutationFn: async (data: object) => {
-      return axios.post(`${apiURl}/posts`, data);
+      return axios.post(`/api/posts`, data);
     },
     onError: (error: any) => {
       if (error?.response.data.error)

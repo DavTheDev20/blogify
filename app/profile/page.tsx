@@ -8,15 +8,11 @@ import { PostType } from '@/types/types';
 import Loading from '../components/Loading';
 
 export default function Profile() {
-  const apiURl =
-    'https://blogify-production.up.railway.app/api' ||
-    'http://localhost:3000/api';
-
   const { data: session, status } = useSession();
   const { data, error, isLoading } = useQuery({
     queryKey: ['authPosts'],
     queryFn: async () => {
-      const response = await axios.get(`${apiURl}/authPosts`);
+      const response = await axios.get(`/api/authPosts`);
       const data = await response.data;
       const posts: Array<PostType> = data.posts;
       return posts;
