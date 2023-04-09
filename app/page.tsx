@@ -56,7 +56,12 @@ export default function Home() {
   function submitPost(event: FormEvent) {
     event.preventDefault();
 
-    if (!session.data) return toast.error('Please login to submit post');
+    // Error if user is not signed in
+    if (!session.data) {
+      titleInput.current.value = '';
+      contentInput.current.value = '';
+      return toast.error('Please login to submit post');
+    }
 
     const formData = new FormData(event.target as HTMLFormElement);
     const title = formData.get('title') as string;
@@ -127,11 +132,13 @@ export default function Home() {
             return (
               <Post
                 key={post.id}
+                id={post.id}
                 title={post.title}
                 content={post.content}
                 createdAt={post.createdAt}
                 name={post.user.name}
                 image={post.user.image}
+                comments={[{}, {}]}
               />
             );
           })

@@ -1,17 +1,22 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Post({
+  id,
   title,
   content,
   createdAt,
   name,
   image,
+  comments,
 }: {
+  id: number;
   title: string;
   content: string;
   createdAt: Date;
   name: string;
   image: string;
+  comments?: Array<object> | null;
 }) {
   const currentYear = new Date().getFullYear();
 
@@ -49,9 +54,14 @@ export default function Post({
       </small>
       <p className="font-light">{content}</p>
       <div className="mt-3">
-        <p className="w-32 text-slate-700 font-semibold hover:cursor-pointer">
-          {0} Comments
-        </p>
+        {comments ? (
+          <Link
+            href={`/post/${id}`}
+            className="w-32 text-slate-700 font-semibold hover:cursor-pointer"
+          >
+            {0} Comments
+          </Link>
+        ) : null}
       </div>
     </div>
   );
