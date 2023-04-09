@@ -12,7 +12,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
   const { data, error, isLoading } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
-      const response = await axios.get('http://localhost:3000/api/post/' + id);
+      const response = await axios.get(`/api/post/${id}`);
       const data = await response.data;
       const post = data.post as PostType;
       return post;

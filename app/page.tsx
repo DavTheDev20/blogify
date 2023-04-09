@@ -10,7 +10,6 @@ import { PostType } from '@/types/types';
 import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const API_ROUTE = 'http://localhost:3000/api/posts';
   const maxCharLength = 250;
 
   const queryClient = useQueryClient();
@@ -23,7 +22,7 @@ export default function Home() {
   const contentInput: { current: HTMLTextAreaElement } = useRef(null);
 
   async function getPosts() {
-    const response = await axios.get(API_ROUTE);
+    const response = await axios.get(`/posts`);
     const data = await response.data;
     let posts: Array<PostType> = data.posts;
     posts.reverse();
@@ -37,7 +36,7 @@ export default function Home() {
 
   const addPost = useMutation({
     mutationFn: async (data: object) => {
-      return axios.post(API_ROUTE, data);
+      return axios.post(`/api/posts`, data);
     },
     onError: (error: any) => {
       if (error?.response.data.error)
