@@ -22,7 +22,7 @@ export default function Home() {
   const contentInput: { current: HTMLTextAreaElement } = useRef(null);
 
   async function getPosts() {
-    const response = await axios.get(`/posts`);
+    const response = await axios.get(`/api/posts`);
     const data = await response.data;
     let posts: Array<PostType> = data.posts;
     posts.reverse();
