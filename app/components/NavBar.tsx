@@ -9,7 +9,7 @@ export default function NavBar() {
 
   return (
     <nav className="flex h-14 mb-5 bg-slate-200">
-      <div className="flex items-center justify-between w-1/2 m-auto text-blue-400 text-lg">
+      <div className="flex items-center justify-between w-4/6 m-auto text-blue-400 text-lg">
         <Link href={'/'} className="hover:text-blue-600">
           blogify
         </Link>
@@ -27,14 +27,6 @@ export default function NavBar() {
                 className="inline ml-5 rounded-full"
               />
             </Link>
-            {/* <img
-              className="inline ml-7"
-              src={session.user?.image as string}
-              width={40}
-              height={40}
-              alt="Profile Image"
-              loading="lazy"
-            /> */}
           </div>
         ) : (
           <button

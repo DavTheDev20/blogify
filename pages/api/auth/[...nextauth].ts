@@ -6,6 +6,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  session: {
+    maxAge: 3600,
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({

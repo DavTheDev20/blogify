@@ -87,7 +87,7 @@ export default function Home() {
         <div className="p-8">
           <input
             name="title"
-            className="inline my-2 w-11/12 px-1 py-2 rounded-sm text-lg"
+            className="inline my-2 w-full px-1 py-2 rounded-md text-lg"
             type="text"
             placeholder="What's the title?"
             autoComplete="off"
@@ -95,7 +95,7 @@ export default function Home() {
           />
           <textarea
             name="content"
-            className="block my-3 w-11/12 h-28 px-1 py-2 rounded-sm text-lg"
+            className="block my-3 w-full h-28 px-1 py-2 rounded-md text-lg"
             placeholder="say whats on your mind... 🤔"
             onChange={(event) => setContentCharCount(event.target.value.length)}
             ref={contentInput}
@@ -111,7 +111,7 @@ export default function Home() {
             {contentCharCount}/{maxCharLength}
           </label>
           <input
-            className="mt-0 mr-5 bg-blue-500 px-10 py-1 text-white rounded-md cursor-pointer float-right active:bg-blue-700 transition-colors"
+            className="mt-0 mr-5 bg-blue-500 px-10 py-2 text-white rounded-md cursor-pointer float-right active:bg-blue-700 transition-colors"
             type="submit"
             value="Post"
           />
