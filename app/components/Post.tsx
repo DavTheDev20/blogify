@@ -27,13 +27,8 @@ export default function Post({
         alt="Profile Image"
         width={40}
         height={40}
-        className="inline"
+        className="inline rounded-full"
       />
-      {/* <img
-        src={}
-        className="w-12 rounded-full inline"
-        loading="lazy"
-      /> */}
       <h2 className="inline ml-4 font-semibold text-slate-500">
         {author.username.name}
       </h2>
@@ -54,7 +49,7 @@ export default function Post({
       </small>
       <p className="font-light">{content}</p>
       <div className="mt-3">
-        <p className="text-slate-700 font-semibold hover:cursor-pointer">
+        <p className="w-32 text-slate-700 font-semibold hover:cursor-pointer">
           {0} Comments
         </p>
       </div>
