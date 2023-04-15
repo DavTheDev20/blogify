@@ -13,13 +13,14 @@ export default function Comment({
 }) {
   return (
     <div className="my-5 bg-slate-200 w-5/6 mx-auto rounded-lg p-5">
-      <img
+      <Image
         src={image}
         width={40}
         height={40}
+        alt="Profile image"
         className="rounded-full inline mb-2"
+        loading="lazy"
       />
-      {/* <Image src={image} width={100} height={100} alt="Profile image" /> */}
       <h2 className="inline ml-4">{user}</h2>
       <small className="font-thin text-gray-400 block">
         {new Date(createdAt).toLocaleDateString('en-us', {

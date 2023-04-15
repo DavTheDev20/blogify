@@ -33,6 +33,7 @@ export default function Post({
         width={40}
         height={40}
         className="inline rounded-full"
+        loading="lazy"
       />
       <h2 className="inline ml-4 font-semibold text-slate-500">
         {author.username.name}
