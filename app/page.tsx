@@ -137,7 +137,7 @@ export default function Home() {
                 createdAt={post.createdAt}
                 name={post.user.name}
                 image={post.user.image}
-                comments={[{}, {}]}
+                comments={post.Comment}
               />
             );
           })

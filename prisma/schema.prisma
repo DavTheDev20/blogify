@@ -11,13 +11,24 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement()) @db.Int
-  title     String   @unique
-  content   String   @db.VarChar(400)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  id        Int       @id @default(autoincrement()) @db.Int
+  title     String    @unique
+  content   String    @db.VarChar(400)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
   userId    String
+  user      User?     @relation(fields: [userId], references: [id])
+  Comment   Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement()) @db.Int
   user      User?    @relation(fields: [userId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id])
+  content   String
+  userId    String
+  postId    Int
+  createdAt DateTime @default(now())
 }
 
 model Account {
@@ -56,6 +67,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Post          Post[]
+  Comment       Comment[]
 }
 
 model VerificationToken {

@@ -15,7 +15,9 @@ export default async function handler(
   if (req.method == 'GET') {
     try {
       await prisma.$connect();
-      const posts = await prisma.post.findMany({ include: { user: true } });
+      const posts = await prisma.post.findMany({
+        include: { user: true, Comment: true },
+      });
       return res.status(200).json({ success: true, posts });
     } catch (error) {
       console.log(error);
