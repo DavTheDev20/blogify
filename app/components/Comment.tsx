@@ -11,6 +11,7 @@ export default function Comment({
   content: string;
   createdAt: Date;
 }) {
+  const currentYear = new Date().getFullYear();
   return (
     <div className="my-5 bg-slate-200 w-5/6 mx-auto rounded-lg p-5">
       <Image
@@ -23,10 +24,16 @@ export default function Comment({
       />
       <h2 className="inline ml-4">{user}</h2>
       <small className="font-thin text-gray-400 block">
-        {new Date(createdAt).toLocaleDateString('en-us', {
-          month: 'short',
-          day: 'numeric',
-        })}
+        {new Date(createdAt).getFullYear() === currentYear
+          ? new Date(createdAt).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+            })
+          : new Date(createdAt).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            })}
       </small>
       <hr />
       <p>{content}</p>

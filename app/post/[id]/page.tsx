@@ -7,7 +7,7 @@ import Post from '@/app/components/Post';
 import { useSession } from 'next-auth/react';
 import Loading from '@/app/components/Loading';
 import Comment from '@/app/components/Comment';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { useRef } from 'react';
 
@@ -19,9 +19,11 @@ export default function PostPage({ params }: { params: { id: string } }) {
   const commentRef: { current: HTMLInputElement } = useRef(null);
   const queryClient = useQueryClient();
 
+  const [commentLength, setCommentLength] = useState(0);
+
   const addComment = useMutation({
     mutationFn: async (content: string) => {
-      await axios.post('http://localhost:3000/api/comments', {
+      await axios.post('/api/comments', {
         content: content,
         postId: id,
         userId: session.data?.user,
@@ -70,7 +72,9 @@ export default function PostPage({ params }: { params: { id: string } }) {
     const formData = new FormData(event.target as HTMLFormElement);
 
     const content = formData.get('content') as string;
-    if (!content) return toast.error('Please enter text to submit a comment.');
+    if (!content) return toast.error('Please enter text to submit a comment');
+    if (content.length > 40)
+      return toast.error('Comment cannot be over 40 characters');
     addComment.mutate(content);
   }
 
@@ -97,11 +101,22 @@ export default function PostPage({ params }: { params: { id: string } }) {
             className="bg-slate-200 p-2 w-full"
             name="content"
             ref={commentRef}
+            onChange={({ target }) => setCommentLength(target.value.length)}
           />
           <input
             type="submit"
-            className="bg-blue-500 text-white py-1 px-2 rounded-md mt-2 cursor-pointer"
+            value="Post"
+            className="bg-blue-500 text-white py-1 px-3 rounded-md mt-2 cursor-pointer"
           />
+          <small className="ml-3 text-md text-gray-600">
+            <span
+              style={
+                commentLength > 40 ? { color: 'red' } : { color: 'initial' }
+              }
+            >
+              {commentLength}/40
+            </span>
+          </small>
         </form>
         {commentsAreLoading ? (
           <Loading />
@@ -112,7 +127,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
                 content={comment.content}
                 user={comment.user.name}
                 image={comment.user.image}
-                createdAt={new Date(2023, 3, 14)}
+                createdAt={comment.createdAt}
               />
             );
           })

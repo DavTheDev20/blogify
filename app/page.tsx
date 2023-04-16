@@ -85,7 +85,7 @@ export default function Home() {
     <div>
       <Toaster />
       <form
-        className="bg-slate-300 sm:w-8/12 m-auto mt-10 h-80 rounded-md shadow-lg lg:w-5/12"
+        className="bg-slate-300 sm:w-full m-auto mt-10 h-80 rounded-md shadow-lg lg:w-7/12"
         onSubmit={submitPost}
       >
         <div className="p-8">
@@ -121,7 +121,7 @@ export default function Home() {
           />
         </div>
       </form>
-      <div className="w-11/12 m-auto mt-10 lg:w-4/12">
+      <div className="w-full m-auto mt-10 lg:w-6/12 md:w-7/12">
         {isLoading || isFetching ? (
           <Loading />
         ) : isError ? (
