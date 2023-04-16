@@ -14,7 +14,7 @@ export default async function handler(
   if (!session)
     return res
       .status(403)
-      .json({ success: false, error: 'Unauthenticated, please login.' });
+      .json({ success: false, error: 'Please login to submit comment' });
 
   if (req.method === 'POST') {
     const data: { content: string; postId: number } = req.body;

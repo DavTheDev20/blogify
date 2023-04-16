@@ -34,7 +34,8 @@ export default function PostPage({ params }: { params: { id: string } }) {
       queryClient.invalidateQueries({ queryKey: ['comments'] });
     },
     onError(error: any) {
-      console.log(error);
+      if (error.response.data?.error)
+        return toast.error(error.response.data?.error as string);
       toast.error(JSON.stringify(error.response.data?.error));
     },
   });
