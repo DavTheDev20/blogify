@@ -1,6 +1,6 @@
 # Blogify Web Application
 
-## A simple blog platform for people to interact and share there thoughts on any topic.
+### A simple blog platform for people to interact and share their thoughts on any topic.
 
 <br />
 
