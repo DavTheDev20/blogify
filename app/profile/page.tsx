@@ -32,6 +32,7 @@ export default function Profile() {
           data?.map((post) => {
             return (
               <Post
+                key={post.id}
                 id={post.id}
                 content={post.content}
                 createdAt={post.createdAt}

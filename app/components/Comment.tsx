@@ -22,7 +22,7 @@ export default function Comment({
         className="rounded-full inline mb-2"
         loading="lazy"
       />
-      <h2 className="inline ml-4">{user}</h2>
+      <h2 className="inline ml-4 font-semibold text-slate-500">{user}</h2>
       <small className="font-thin text-gray-400 block">
         {new Date(createdAt).getFullYear() === currentYear
           ? new Date(createdAt).toLocaleDateString('en-US', {

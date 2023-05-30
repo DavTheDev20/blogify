@@ -125,6 +125,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
           commentsData?.map((comment) => {
             return (
               <Comment
+                key={comment.id}
                 content={comment.content}
                 user={comment.user.name}
                 image={comment.user.image}
