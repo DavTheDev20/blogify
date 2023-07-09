@@ -31,6 +31,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
     },
     onSuccess() {
       commentRef.current.value = '';
+      setCommentLength(0); // Reset comment length identifier
       queryClient.invalidateQueries({ queryKey: ['comments'] });
     },
     onError(error: any) {
