@@ -6,12 +6,15 @@
 
 ### How to Run Application on Local Machine:
 
+#### Prerequisite: Create OAuth client ID credentials in google cloud console
+
 1. Run `npm install`
-2. Add .env.local file and include the following variables
+2. Add .env file and include the following variables
    - DATABASE_URL
    - NEXTAUTH_SECRET
-   - GOOGLE_CLIENT_ID
-   - GOOGLE_CLIENT_SECRET
+   - GOOGLE_CLIENT_ID (Comes from google developer console)
+   - GOOGLE_CLIENT_SECRET (Comes from google developer console)
+3. Run `npx prisma db push` to create db tables
 3. Once configured, run app with command `npm run dev`
 
 ### Additional Details:
