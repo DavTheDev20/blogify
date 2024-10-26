@@ -15,9 +15,9 @@
    - GOOGLE_CLIENT_ID (Comes from google developer console)
    - GOOGLE_CLIENT_SECRET (Comes from google developer console)
 3. Run `npx prisma db push` to create db tables
-3. Once configured, run app with command `npm run dev`
+4. Once configured, run app with command `npm run dev`
 
 ### Additional Details:
 
 - You must use an SQL database
-- You must configure the application in google cloud following the next auth documentation
+- You must configure the application in google cloud following the [next auth documentation](https://next-auth.js.org/providers/google)
