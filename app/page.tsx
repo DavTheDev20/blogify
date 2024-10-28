@@ -153,6 +153,8 @@ export default function Home() {
           <Loading />
         ) : isError ? (
           "Error..."
+        ) : data.length == 0 ? (
+          "No posts..."
         ) : (
           data.map((post: PostType) => {
             return (
