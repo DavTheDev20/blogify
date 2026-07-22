@@ -10,9 +10,10 @@ import Comment from '@/app/components/Comment';
 import { FormEvent, useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { useRef } from 'react';
+import { useParams } from 'next/navigation';
 
-export default function PostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default function PostPage() {
+  const params = useParams<{ id: string }>();
 
   const session = useSession();
   //@ts-ignore
@@ -25,7 +26,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
     mutationFn: async (content: string) => {
       await axios.post('/api/comments', {
         content: content,
-        postId: id,
+        postId: params?.id,
         userId: session.data?.user,
       });
     },
@@ -48,7 +49,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
   } = useQuery({
     queryKey: ['post'],
     queryFn: async () => {
-      const response = await axios.get(`/api/post/${id}`);
+      const response = await axios.get(`/api/post/${params?.id}`);
       const data = await response.data;
       const post = data.post as PostType;
       return post;
@@ -62,7 +63,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
   } = useQuery({
     queryKey: ['comments'],
     queryFn: async () => {
-      const response = await axios.get(`/api/post/${id}/comments`);
+      const response = await axios.get(`/api/post/${params?.id}/comments`);
       const data = await response.data;
       const comments = data.comments as Array<CommentType>;
       return comments;
@@ -135,7 +136,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
             );
           })
         )}
-        {}
+        { }
       </div>
     </div>
   );
